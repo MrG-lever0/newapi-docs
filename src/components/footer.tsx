@@ -70,12 +70,10 @@ const socialLinks: { name: string; href: string; icon: React.ReactNode }[] = [
 ];
 
 const beianLinks: { text: string; href: string }[] = [
-  { text: '浙ICP备2025190188号-2', href: 'https://beian.miit.gov.cn/' },
-  {
-    text: '浙公网安备33010602014019号',
-    href: 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602014019',
-  },
+  { text: '京ICP备19020068号-1', href: 'https://beian.miit.gov.cn/' },
+  { text: '京ICP备19020068号-2', href: 'https://beian.miit.gov.cn/' },
 ];
+
 
 // External links (same labels across all languages)
 const relatedProjects: { label: string; href: string }[] = [
@@ -153,7 +151,7 @@ const translations: Record<string, FooterTranslation> = {
       relatedProjects: '相关项目',
       friendshipLinks: '友情链接',
     },
-    copyright: '© 2025 锟腾科技. All Rights Reserved.',
+    copyright: '版权所有 © 北京一森科技有限公​​司​',
   },
   en: {
     sections: {
@@ -243,82 +241,21 @@ export function Footer({ lang }: FooterProps) {
   return (
     <footer className="border-fd-border bg-fd-card/30 mt-auto border-t backdrop-blur-sm">
       <div className="mx-auto max-w-[1400px] px-6 py-12">
-        {/* Top: Links Grid */}
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 pb-10 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-12">
-          {sections.map((section) => (
-            <div key={section.title}>
-              <h3 className="text-fd-foreground mb-4 text-sm font-semibold">
-                {section.title}
-              </h3>
-              <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.href}>
-                    {'external' in link && link.external ? (
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-fd-muted-foreground hover:text-fd-foreground text-sm transition-colors"
-                      >
-                        {link.label}
-                      </a>
-                    ) : (
-                      <Link
-                        href={getLocalePath(lang, link.href)}
-                        className="text-fd-muted-foreground hover:text-fd-foreground text-sm transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom: Copyright and Social */}
-        <div className="border-fd-border flex flex-col items-start justify-between gap-4 border-t pt-8 sm:flex-row sm:items-center">
-          {/* Left: Copyright and Beian */}
-          <div className="text-fd-muted-foreground flex flex-col gap-2 text-xs">
-            <p>{t.copyright}</p>
-            <div className="flex flex-col gap-1 sm:flex-row sm:gap-3">
-              {beianLinks.map((item, index) => (
-                <a
-                  key={index}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-fd-foreground transition-colors"
-                >
-                  {item.text}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: Social Icons */}
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social) => {
-              const isExternal = social.href.startsWith('http');
-              const Component = isExternal ? 'a' : Link;
-              return (
-                <Component
-                  key={social.name}
-                  href={
-                    isExternal ? social.href : getLocalePath(lang, social.href)
-                  }
-                  {...(isExternal && {
-                    target: '_blank',
-                    rel: 'noopener noreferrer',
-                  })}
-                  className="text-fd-muted-foreground hover:text-fd-foreground transition-colors"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </Component>
-              );
-            })}
+        {/* Bottom: Copyright and Beian */}
+        <div className="text-fd-muted-foreground flex flex-col items-center gap-2 text-xs">
+          <p>{t.copyright}</p>
+          <div className="flex gap-3">
+            {beianLinks.map((item, index) => (
+              <a
+                key={index}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-fd-foreground transition-colors"
+              >
+                {item.text}
+              </a>
+            ))}
           </div>
         </div>
       </div>
