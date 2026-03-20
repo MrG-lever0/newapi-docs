@@ -3,9 +3,9 @@ import { generateLLMsFullText } from '@/lib/llms';
 
 export async function GET(
   request: Request,
-  context: { params: { lang: string } }
+  context: { params: Promise<{ lang: string }> }
 ): Promise<Response> {
-  const { lang } = context.params;
+  const { lang } = await context.params;
 
   const resolvedLang = i18n.languages.includes(
     lang as (typeof i18n.languages)[number]
