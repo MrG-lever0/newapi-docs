@@ -8,7 +8,7 @@ export const runtime = 'edge';
 export async function GET(
   request: NextRequest,
   context: { params: { slug?: string[] } }
-): Promise<NextResponse | ImageResponse> {
+): Promise<ImageResponse | NextResponse> {
   const { slug } = context.params;
   const lang = request.nextUrl.searchParams.get('lang') ?? undefined;
 
@@ -33,7 +33,8 @@ export async function GET(
           padding: '80px',
           background: '#020817',
           color: 'white',
-          fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+          fontFamily:
+            'system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
         }}
       >
         <div
